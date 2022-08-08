@@ -37,7 +37,13 @@ class TweetDfExtractor:
 
     # an example function
     def find_statuses_count(self)->list:
-        """"""
+        """
+        A function to extract the status count
+
+        Returns:
+            list: statuses_count
+
+        """
         statuses_count = []
         for count in self.tweets_list:
             statuses_count.append(count['user']['statuses_count'])
@@ -63,6 +69,16 @@ class TweetDfExtractor:
        
     
     def find_sentiments(self, text)->list:
+        """
+        A function to extract sentiment from text using textblob for natural languange processing.
+
+        Args:
+            text:
+
+        Returns:
+            list: polarity and subjectivity
+
+        """
         polarity = []
         subjectivity = []
         for tweet in text:
@@ -73,12 +89,31 @@ class TweetDfExtractor:
         return polarity, subjectivity
 
     def find_created_time(self)->list:
+        """
+        A function that extracts the dates which the tweets got tweeted.
+
+        Returns:
+            list: created_at
+
+        """
         created_at = []
-       
+
+        for time in range(len(self.tweets_list)):
+            created_at.append((self.tweets_list[time]['created_at']))
+
         return created_at
 
     def find_source(self)->list:
-        source = 
+        """
+        A function that extracts the hyperlink source of the tweets.
+        
+        Returns:
+            list: source
+
+        """
+        source = []
+        for s in range(len(self.tweets_list)):
+            source.append((self.tweets_list[s]['source']))
 
         return source
 
