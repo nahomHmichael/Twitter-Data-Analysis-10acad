@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 from textblob import TextBlob
+import re
 
 
 def read_json(json_file: str)->list:
@@ -36,13 +37,29 @@ class TweetDfExtractor:
 
     # an example function
     def find_statuses_count(self)->list:
+        """"""
         statuses_count = []
         for count in self.tweets_list:
             statuses_count.append(count['user']['statuses_count'])
         return statuses_count
         
     def find_full_text(self)->list:
-        text =
+        """
+        A function to extract tweet text.
+
+        Returns:
+            List: original tweet text and clean tweet text
+
+        """
+        original_text = []
+        tidy_text = []
+
+        for text in range(len(self.tweets_list)):
+            original_text.append((self.tweets_list[text]['text']))
+            tidy_text.append(re.sub("^RT.*:","",self.tweets_list[text]['text']))
+
+        return  original_text, tidy_text
+
        
     
     def find_sentiments(self, text)->list:
