@@ -62,8 +62,8 @@ class TweetDfExtractor:
         tidy_text = []
 
         for text in range(len(self.tweets_list)):
-            original_text.append((self.tweets_list[text]['text']))
-            tidy_text.append(re.sub("^RT.*:", "", self.tweets_list[text]['text']))
+            original_text.append((self.tweets_list[text]['full_text']))
+            tidy_text.append(re.sub("^RT.*:", "", self.tweets_list[text]['full_text']))
 
         return original_text, tidy_text
 
@@ -176,8 +176,8 @@ class TweetDfExtractor:
         return hashtags
 
     def find_mentions(self) -> list:
-        mentions = []
-                                        # Don't Forget!!!!
+        mentions = [x.get('user_mentions',None) for x in self.tweets_list]
+
         return mentions
 
     def find_location(self) -> list:
