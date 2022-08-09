@@ -142,7 +142,7 @@ class TweetDfExtractor:
 
     def find_friends_count(self) -> list:
         friends_count = []
-        for friends in self.tweets_list:
+        for friends in range(len(self.tweets_list)):
             friends_count.append(self.tweets_list[friends]['user']['friends_count'])
 
         return friends_count
@@ -168,7 +168,7 @@ class TweetDfExtractor:
 
     def find_hashtags(self) -> list:
         hashtags = []
-        for hstg in self.tweets_list:
+        for hstg in range(len(self.tweets_list)):
             hashtags.append(self.tweets_list[hstg]['entities']['hashtags'])
 
         return hashtags
