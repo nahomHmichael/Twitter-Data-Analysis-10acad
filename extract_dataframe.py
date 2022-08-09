@@ -207,11 +207,12 @@ class TweetDfExtractor:
     def get_tweet_df(self, save=False) -> pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
 
-        columns = ['created_at', 'source', 'original_text', 'clean_text', 'polarity', 'subjectivity', 'lang', 'favorite_count',
+        columns = ['created_at', 'statuses_count', 'source', 'original_text', 'clean_text', 'polarity', 'subjectivity', 'lang', 'favorite_count',
                    'retweet_count',
                    'original_author', 'screen_count', 'followers_count', 'friends_count', 'possibly_sensitive', 'hashtags',
                    'user_mentions', 'place', 'place_coord_boundaries']
 
+        statuses_count = self.find_statuses_count()
         created_at = self.find_created_time()
         source = self.find_source()
         text, clean_text = self.find_full_text()
@@ -229,10 +230,10 @@ class TweetDfExtractor:
         coordinates = self.find_coordinates()
         screen_count = self.find_screen_count()
 
-        data = zip(created_at, source, text, clean_text, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, screen_count,
+        data = zip(created_at, statuses_count, source, text, clean_text, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, screen_count,
                    follower_count, friends_count, sensitivity, hashtags, mentions, location, coordinates)
         df = pd.DataFrame(data=data, columns=columns)
-        print(clean_text[0:10])
+        print(statuses_count[:5])
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
@@ -243,7 +244,7 @@ class TweetDfExtractor:
 
 if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
-    columns = ['created_at', 'source', 'original_text', 'clean_text', 'sentiment', 'polarity', 'subjectivity', 'lang',
+    columns = ['created_at', 'statuses_count', 'source', 'original_text', 'clean_text', 'sentiment', 'polarity', 'subjectivity', 'lang',
                'favorite_count', 'retweet_count',
                'original_author', 'screen_count', 'followers_count', 'friends_count', 'possibly_sensitive', 'hashtags',
                'user_mentions', 'place', 'place_coord_boundaries']
