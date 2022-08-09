@@ -1,3 +1,4 @@
+import pandas as pd
 class Clean_Tweets:
     """
     The PEP8 Standard AMAZING!!!
@@ -6,7 +7,7 @@ class Clean_Tweets:
         self.df = df
         print('Automation in Action...!!!')
         
-    def drop_unwanted_column(self, df:pd.DataFrame)->pd.DataFrame:
+    def drop_unwanted_column(self, df:pd.DataFrame) -> pd.DataFrame:
         """
         remove rows that has column names. This error originated from
         the data collection stage.  
@@ -21,7 +22,7 @@ class Clean_Tweets:
         drop duplicate rows
         """
         
-        ---
+        df = df.drop_duplicates()
         
         return df
     def convert_to_datetime(self, df:pd.DataFrame)->pd.DataFrame:
