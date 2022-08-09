@@ -135,8 +135,8 @@ class TweetDfExtractor:
 
         """
         followers_count = []
-        for follower in (self.tweets_list):
-            followers_count.append(self.tweets_list[follower]['user']['follower_count'])
+        for follower in range(len(self.tweets_list)):
+            followers_count.append(self.tweets_list[follower]['user']['followers_count'])
 
         return followers_count
 
@@ -148,23 +148,21 @@ class TweetDfExtractor:
         return friends_count
 
     def is_sensitive(self) -> list:
-        is_sensitive = []
-
         is_sensitive = [x.get('possibly_sensitive', None) for x in self.tweets_list]
 
         return is_sensitive
 
     def find_favourite_count(self) -> list:
         favourite_count = []
-        for likes in self.tweets_list:
-            favourite_count.append(self.tweets_list[likes]['user']['favourite_count'])
+        for likes in range(len(self.tweets_list)):
+            favourite_count.append(self.tweets_list[likes]['user']['favourites_count'])
 
         return favourite_count
 
     def find_retweet_count(self) -> list:
         retweet_count = []
-        for rt in self.tweets_list:
-            retweet_count.append(self.tweets_list[rt]['user']['retweet_count'])
+        for rt in range(len(self.tweets_list)):
+            retweet_count.append(self.tweets_list[rt]['retweet_count'])
 
         return retweet_count
 
@@ -187,6 +185,13 @@ class TweetDfExtractor:
             location = ''
 
         return location
+
+    def find_lang(self):
+        lang = []
+        for lg in range(len(self.tweets_list)):
+            lang.append(self.tweets_list[lg]['lang'])
+
+        return lang
 
     def get_tweet_df(self, save=False) -> pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
