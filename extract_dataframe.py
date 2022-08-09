@@ -142,33 +142,40 @@ class TweetDfExtractor:
 
     def find_friends_count(self) -> list:
         friends_count = []
+        for friends in self.tweets_list:
+            friends_count.append(self.tweets_list[friends]['user']['friends_count'])
 
         return friends_count
 
     def is_sensitive(self) -> list:
-        try:
-            is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
-        except KeyError:
-            is_sensitive = None
+        is_sensitive = []
+
+        is_sensitive = [x.get('possibly_sensitive', None) for x in self.tweets_list]
 
         return is_sensitive
 
     def find_favourite_count(self) -> list:
-        pass
+        favourite_count = []
+        for likes in self.tweets_list:
+            favourite_count.append(self.tweets_list[likes]['user']['favourite_count'])
+
+        return favourite_count
 
     def find_retweet_count(self) -> list:
         retweet_count = []
 
+                                            # DONT FORGET!!
         return retweet_count
 
     def find_hashtags(self) -> list:
         hashtags = []
+                                          # DONT FORGET!!
 
         return hashtags
 
     def find_mentions(self) -> list:
         mentions = []
-
+                                        # Don't Forget!!!!
         return mentions
 
     def find_location(self) -> list:
@@ -189,8 +196,8 @@ class TweetDfExtractor:
 
         created_at = self.find_created_time()
         source = self.find_source()
-        text = self.find_full_text()
-        polarity, subjectivity = self.find_sentiments(text)
+        text, clean_text = self.find_full_text()
+        polarity, subjectivity = self.find_sentiments(clean_text)
         lang = self.find_lang()
         fav_count = self.find_favourite_count()
         retweet_count = self.find_retweet_count()
