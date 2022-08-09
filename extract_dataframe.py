@@ -174,22 +174,19 @@ class TweetDfExtractor:
         return hashtags
 
     def find_mentions(self) -> list:
-        mentions = [x.get('user_mentions',None) for x in self.tweets_list]
+        mentions = [x.get('user_mentions', None) for x in self.tweets_list]
 
         return mentions
 
     def find_location(self) -> list:
-        try:
-            location = self.tweets_list['user']['location']
-        except TypeError:
-            location = ''
+        location = [x['user']['location'] for x in self.tweets_list]
 
         return location
 
-    def find_lang(self):
+    def find_lang(self) -> list:
         lang = []
         for lg in range(len(self.tweets_list)):
-            lang.append(self.tweets_list[lg]['lang'])
+            lang.append((self.tweets_list[lg]['lang']))
 
         return lang
 
@@ -215,9 +212,11 @@ class TweetDfExtractor:
         hashtags = self.find_hashtags()
         mentions = self.find_mentions()
         location = self.find_location()
+
         data = zip(created_at, source, text, polarity, subjectivity, lang, fav_count, retweet_count, screen_name,
                    follower_count, friends_count, sensitivity, hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
+        #print(location)
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
@@ -232,8 +231,9 @@ if __name__ == "__main__":
                'favorite_count', 'retweet_count',
                'original_author', 'screen_count', 'followers_count', 'friends_count', 'possibly_sensitive', 'hashtags',
                'user_mentions', 'place', 'place_coord_boundaries']
+
     _, tweet_list = read_json("./data/global_twitter_data.json")
     tweet = TweetDfExtractor(tweet_list)
-    tweet_df = tweet.get_tweet_df()
+    tweet_df = tweet.get_tweet_df(save=True)
 
     # use all defined functions to generate a dataframe with the specified columns above
