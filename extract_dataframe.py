@@ -81,11 +81,23 @@ class TweetDfExtractor:
         polarity = []
         subjectivity = []
         for tweet in text:
-            tweet_sentiment = TextBlob(tweet).sentiment
+            tweet_sentiment = TextBlob(str(tweet)).sentiment
             polarity.append(tweet_sentiment.polarity)
             subjectivity.append(tweet_sentiment.subjectivity)
 
         return polarity, subjectivity
+
+    def find_sentiment(self, polarity) -> list:
+        sentiment = []
+        for i in range(len(polarity)):
+            if polarity[i] > 0:
+                sentiment.append(1)
+            elif polarity[i] < 0:
+                sentiment.append(0)
+            else:
+                sentiment.append(-1)
+
+        return sentiment
 
     def find_created_time(self) -> list:
         """
@@ -204,17 +216,7 @@ class TweetDfExtractor:
 
         return  screen_count
 
-    def find_sentiment(self, polarity, subjectivity) -> list:
-        sentiment = []
-        for i in range(len(polarity)):
-            if polarity[i] > 0:
-                sentiment.append(1)
-            elif polarity[i] < 0:
-                sentiment.append(0)
-            else:
-                sentiment.append(-1)
 
-        return sentiment
 
     def get_tweet_df(self, save=False) -> pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
@@ -229,7 +231,7 @@ class TweetDfExtractor:
         source = self.find_source()
         text, clean_text = self.find_full_text()
         polarity, subjectivity = self.find_sentiments(clean_text)
-        sentiment = self.find_sentiment(polarity, subjectivity)
+        sentiment = self.find_sentiment(polarity)
         lang = self.find_lang()
         fav_count = self.find_favourite_count()
         retweet_count = self.find_retweet_count()
@@ -246,7 +248,7 @@ class TweetDfExtractor:
         data = zip(created_at, statuses_count, source, text, clean_text, sentiment, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, screen_count,
                    follower_count, friends_count, sensitivity, hashtags, mentions, location, coordinates)
         df = pd.DataFrame(data=data, columns=columns)
-
+        #print(clean_text[0:5])
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
