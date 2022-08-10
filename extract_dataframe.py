@@ -246,7 +246,7 @@ class TweetDfExtractor:
         data = zip(created_at, statuses_count, source, text, clean_text, sentiment, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, screen_count,
                    follower_count, friends_count, sensitivity, hashtags, mentions, location, coordinates)
         df = pd.DataFrame(data=data, columns=columns)
-        print(polarity[0:5])
+
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
