@@ -188,10 +188,16 @@ class TweetDfExtractor:
 
     def find_hashtags(self) -> list:
         hashtags = []
-        for hstg in range(len(self.tweets_list)):
-            hashtags.append(self.tweets_list[hstg]['entities']['hashtags'])
+        for tweet in self.tweets_list:
+            try:
+                hashtags.append(tweet['entities']['hashtags'][0]['text'])
+            except KeyError:
+                hashtags.append(None)
+            except IndexError:
+                hashtags.append(None)
 
         return hashtags
+
 
     def find_mentions(self) -> list:
         mentions = [x.get('user_mentions', None) for x in self.tweets_list]
@@ -256,7 +262,7 @@ class TweetDfExtractor:
         data = zip(created_at, statuses_count, source, text, clean_text, sentiment, polarity, subjectivity, lang, fav_count, retweet_count, screen_name, screen_count,
                    follower_count, friends_count, sensitivity, hashtags, mentions, location, coordinates)
         df = pd.DataFrame(data=data, columns=columns)
-        #print(sentiment[0:5])
+        print(hashtags[0:5])
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
