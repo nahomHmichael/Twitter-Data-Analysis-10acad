@@ -73,6 +73,6 @@ if __name__ == "__main__":
     processed_df = cleaner.convert_to_numbers(processed_df)
     processed_df = cleaner.remove_non_english_tweets(processed_df)
 
-    processed_df.to_csv('clean_processed_tweet_data.csv')
+    processed_df.to_csv('clean_processed_tweet_data.csv', index=False)
     print('processed tweet cleaned!')
     print('File Saved Successfully!!!')
