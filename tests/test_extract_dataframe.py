@@ -82,8 +82,9 @@ class TestTweetDfExtractor(unittest.TestCase):
     def test_find_is_sensitive(self):
         self.assertEqual(self.df.is_sensitive(), [None, None, None, None, None])
 
-    # def test_find_hashtags(self):
-    #     self.assertEqual(self.df.find_hashtags(), )
+    def test_find_hashtags(self):
+        self.assertEqual(self.df.find_hashtags(), ['City', 'China', 'XiJinping', 'XiJinping', None])
+
 
     # def test_find_mentions(self):
     #     self.assertEqual(self.df.find_mentions(), )
