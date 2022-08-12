@@ -213,4 +213,4 @@ if __name__ == "__main__":
 
     df = pd.read_pickle('./trained_model/cleaned_tweet.pkl')
 
-    insert_to_tweet_table(dbName='tweets', df=df, table_name='TweetInformation')
+    insert_to_tweet_table(dbName='tweets_data', df=df, table_name='TweetInformation')
