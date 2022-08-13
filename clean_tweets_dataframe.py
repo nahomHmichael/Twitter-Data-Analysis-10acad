@@ -18,7 +18,7 @@ class Clean_Tweets:
         unwanted_rows = df[df['retweet_count'] == 'retweet_count'].index
         df.drop(unwanted_rows, inplace=True)
         df = df[df['polarity'] != 'polarity']
-        #print(df.head())
+        # print(df.head())
 
         return df
 
@@ -28,7 +28,7 @@ class Clean_Tweets:
         """
 
         df = df.drop_duplicates()
-        #print(df.head(2))
+        # print(df.head(2))
 
         return df
 
@@ -36,10 +36,11 @@ class Clean_Tweets:
         """
         convert column to datetime
         """
-        self.df['created_at'] = pd.to_datetime(self.df['created_at'], errors='coerce')   # coeerce argument to set invalid parsing as NaT
+        self.df['created_at'] = pd.to_datetime(self.df['created_at'],
+                                               errors='coerce')  # coeerce argument to set invalid parsing as NaT
 
         self.df = self.df[self.df['created_at'] >= '2020-12-31']
-        #print(self.df.head(2))
+        # print(self.df.head(2))
 
         return self.df
 
@@ -51,7 +52,7 @@ class Clean_Tweets:
         self.df['polarity'] = pd.to_numeric(self.df['polarity'], errors='coerce')
         self.df['retweet_count'] = pd.to_numeric(self.df['retweet_count'], errors='coerce')
         self.df['favorite_count'] = pd.to_numeric(self.df['favorite_count'], errors='coerce')
-        #print(self.df['polarity'].head())
+        # print(self.df['polarity'].head())
         return self.df
 
     def remove_non_english_tweets(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -59,8 +60,8 @@ class Clean_Tweets:
         remove non english tweets from lang
         """
 
-        self.df = df[df['lang']=='en']
-        #print(self.df['lang'].head())
+        self.df = df[df['lang'] == 'en']
+
         return self.df
 
 
@@ -72,6 +73,7 @@ if __name__ == "__main__":
     processed_df = cleaner.convert_to_datetime(processed_df)
     processed_df = cleaner.convert_to_numbers(processed_df)
     processed_df = cleaner.remove_non_english_tweets(processed_df)
+    print(processed_df['favorite_count'][0])
 
     processed_df.to_csv('clean_processed_tweet_data.csv', index=False)
     print('processed tweet cleaned!')
