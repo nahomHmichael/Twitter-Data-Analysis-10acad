@@ -37,7 +37,7 @@ columns = ['created_at',
 
 class TestTweetDfExtractor(unittest.TestCase):
     """
-		A class for unit-testing function in the fix_clean_tweets_dataframe.py file
+		A class for unit-testing function in the test_extract_dataframe.py file
 
 		Args:
         -----
