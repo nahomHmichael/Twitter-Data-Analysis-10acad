@@ -1,6 +1,6 @@
 # Twitter-Data-Analysis
 
-###### Objectivesz
+###### Objectives
 The purpose of 10 Academy’s pre-assessment training was to provide Twitter data based challenges where potential trainees are required to complete Machine Learning Engineering tasks. Through these challenges 10 Academy selects capable candidates for its three-months long intensive training. The challenges comprise daily tasks that potential trainees have to submit before a deadline.
 
 ###### Workflow Framework
