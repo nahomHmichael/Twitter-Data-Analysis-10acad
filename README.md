@@ -1,29 +1,24 @@
 # Twitter-Data-Analysis
 
-### So here are the bare minimum requirement for completing this task
+###### Objectives
+The purpose of 10 Academy’s pre-assessment training was to provide Twitter data based challenges where potential trainees are required to complete Machine Learning Engineering tasks. Through these challenges 10 Academy selects capable candidates for its three-months long intensive training. The challenges comprise daily tasks that potential trainees have to submit before a deadline.
 
-1. Use this template to create a repository called Twitter-Data-Analysis in your github account. See ["Creating a repository from a template."](https://docs.github.com/en/articles/creating-a-repository-from-a-template) for more information.
-2. [Download](https://drive.google.com/drive/folders/19G8dmehf9vU0u6VTKGV-yWsQOn3IvPsd) and extract the necessary data and put it in the data directory. The data should not not be added to git tracking.
-3. Create a branch called “bugfix” to fix the bugs in the fix_clean_tweets_dataframe.py and fix_extract_dataframe.py 
-4. In branch “bugfix” use the git mv command to rename fix_clean_tweets_dataframe.py to clean_tweets_dataframe.py and fix_extract_dataframe.py  to extract_dataframe.py 
-5. Fix the bugs on clean_tweets_dataframe.py and extract_dataframe.py 
-6. Multiple times, push the code you are working on to git, and once the fix is complete, merge the fix_bug branch to main branch
-7. Create a new branch called “testing” for updating the unit tests in the test/ folder to be applicable to the code you fixed. 
-    a. Build your unit and integration tests to run on small data (< 1 MB) that you copied from what is provided - avoid pushing large data to github
-    b. Think about the key elements (units can be functions, classes, or modules; multiple of them working together to accomplish a task requires integration testing) of the code base you are working on. Write the following
-      - Unit tests: for individual key functions and classes
-      - Integration tests: for the integration of multiple units working together
-8. After completing the unit and integration tests, merge  the “testing” branch with the main branch
-9. In all cases when you merge, make sure you first do Pull Request, review, then accept the merge.
-10. Use github actions in your repository such that when you git push new code (or merge a branch) to the main branch, the unit test in tests/*.py runs automatically. All tests should pass.
+###### Workflow Framework
+The CRISP-DM was used on this project which follows the patterns shown below. The process is iterative and starts at the Business Understanding phase.
+![workflow diagram](images/Flowcharts_2_50.png)
+    **1.Business Understanding:-** Identifying business objectives, resources and success criteria.
+Data Understanding:-  Collect data or use available data; describe data, i.e examine the data format, number of rows and columns field identities and available features; Explore data by visualizations to make sure the data could verify the business question; Verify data quality i.e check for missing values.
+    **2.Data Preparation:-** This phase will help prepare the data for the modeling phase. It includes, data selection, data cleaning, feature engineering, data integration and data formatting.
+    **3.Modeling:-** This phase will develop our machine learning model and do sentiment analysis to answer the business question. It includes model selection, i.e select machine learning algorithms and explain why we chose a certain algorithm; test design, i.e splitting the data into train set and test set; model development, model assessment i.e measure model success and choose the best model.
+    **4.Evaluation:-**  evaluate the model concerning the business indicator and what to do next. It include evaluating the trained model with the test set acquired in designing tests; review our work process to check if anything is missing, if all phases has executed as required, summarize our findings and correct anything if necessary; determining next steps i.e decide if the model is ready for deployment, if it needs more iteration or even start a new project.
 
 
-After Completing this Challenge, you would have explore  
+# Sentiment Analysis and Topic Modeling on Twitter Data
+###### Introduction
+What are twitter users concerned about and their reaction toward certain issues? There is a huge amount of data that can be collected from twitter to try and solve these questions. Even one single tweet is full of information.Twitter allows its data to be accessible through its access point which makes it easier for academic research.
+###### How was the Data collected?
+There were two data that was pre-downloaded by the10 Academy team.  They were provided to us as raw JSON formats. They collected based on keywords like [‘chinaus’, ‘chinaTaiwan’,  ‘chinaTaiwancrisis’, ‘taiwan’, ‘XiJinping’, ‘USCHINA’, ‘pelosi’, ‘TaiwanStraitsCrisis’, ‘WWIII’,  ‘pelosivisittotaiwan’]. The first one was 149 MB. The second one was 128 MB collected based on the same keywords plus country specific geocodes included. E.g -28.479,26.128,400km for South Africa. 
 
-- Unittesting
-- Modular Coding
-- Software Engineering Best Practices
-- Python Package Structure
-- Bug Fix (Debugging)
-
-Have Fun and Cheers
+###### Extracting Tweets From The Raw Data
+First we have to import important libraries such as json, textblob, pandas and re. The raw data was loaded using pandas to extract the information into a dataframe. To do that we used a function that accepts the raw files to open and read them into a list. 
+![]
