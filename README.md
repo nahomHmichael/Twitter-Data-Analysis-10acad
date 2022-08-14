@@ -5,12 +5,14 @@ The purpose of 10 Academy’s pre-assessment training was to provide Twitter dat
 
 ###### Workflow Framework
 The CRISP-DM was used on this project which follows the patterns shown below. The process is iterative and starts at the Business Understanding phase.
+
 ![workflow diagram](images/Flowcharts_2_50.png)
-    **1.Business Understanding:-** Identifying business objectives, resources and success criteria.
+
+    -**1.Business Understanding:-** Identifying business objectives, resources and success criteria.
 Data Understanding:-  Collect data or use available data; describe data, i.e examine the data format, number of rows and columns field identities and available features; Explore data by visualizations to make sure the data could verify the business question; Verify data quality i.e check for missing values.
-    **2.Data Preparation:-** This phase will help prepare the data for the modeling phase. It includes, data selection, data cleaning, feature engineering, data integration and data formatting.
-    **3.Modeling:-** This phase will develop our machine learning model and do sentiment analysis to answer the business question. It includes model selection, i.e select machine learning algorithms and explain why we chose a certain algorithm; test design, i.e splitting the data into train set and test set; model development, model assessment i.e measure model success and choose the best model.
-    **4.Evaluation:-**  evaluate the model concerning the business indicator and what to do next. It include evaluating the trained model with the test set acquired in designing tests; review our work process to check if anything is missing, if all phases has executed as required, summarize our findings and correct anything if necessary; determining next steps i.e decide if the model is ready for deployment, if it needs more iteration or even start a new project.
+    -**2.Data Preparation:-** This phase will help prepare the data for the modeling phase. It includes, data selection, data cleaning, feature engineering, data integration and data formatting.
+    -**3.Modeling:-** This phase will develop our machine learning model and do sentiment analysis to answer the business question. It includes model selection, i.e select machine learning algorithms and explain why we chose a certain algorithm; test design, i.e splitting the data into train set and test set; model development, model assessment i.e measure model success and choose the best model.
+    -**4.Evaluation:-**  evaluate the model concerning the business indicator and what to do next. It include evaluating the trained model with the test set acquired in designing tests; review our work process to check if anything is missing, if all phases has executed as required, summarize our findings and correct anything if necessary; determining next steps i.e decide if the model is ready for deployment, if it needs more iteration or even start a new project.
 
 
 # Sentiment Analysis and Topic Modeling on Twitter Data
